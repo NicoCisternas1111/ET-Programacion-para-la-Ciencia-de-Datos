@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ipynb_checkpoints/
+venv/
+.venv/
+
+# Artefactos DERIVADOS: se regeneran de forma determinista a partir de los
+# datos fuente, así que no se versionan (ver README):
+#   python src/fuente_sql.py  -> data/comunas.db
+#   python src/etl.py         -> data/pedidos_limpio.csv
+#   python src/clustering.py  -> data/comunas_segmentadas.csv
+#   python src/modelo.py      -> models/modelo_retrasos.joblib
+data/pedidos_limpio.csv
+data/comunas_segmentadas.csv
+data/*.db
+models/
+
+# Los DATOS FUENTE sí se versionan:
+#   data/pedidos_delivery.csv -> fuente 1. Aunque generar_dataset.py usa
+#     semilla fija, el flujo de NumPy no es idéntico entre versiones de la
+#     librería: versionar el CSV garantiza que cualquiera reproduzca
+#     exactamente las métricas del README.
+#   data/clima_api.json -> fuente 3. Snapshot de respaldo de la API,
+#     necesario para que el ETL funcione sin conexión a internet.
