@@ -1,0 +1,104 @@
+{
+  "fuente": "Open-Meteo API (https://open-meteo.com)",
+  "extraido_en": "2026-07-14T17:55:22",
+  "registros": [
+    {
+      "comuna": "Estación Central",
+      "temperatura_c": 12.9,
+      "humedad_pct": 81,
+      "viento_kmh": 5.8,
+      "precipitacion_mm": 0.0
+    },
+    {
+      "comuna": "Independencia",
+      "temperatura_c": 12.8,
+      "humedad_pct": 73,
+      "viento_kmh": 1.9,
+      "precipitacion_mm": 0.0
+    },
+    {
+      "comuna": "La Florida",
+      "temperatura_c": 12.5,
+      "humedad_pct": 81,
+      "viento_kmh": 1.8,
+      "precipitacion_mm": 0.0
+    },
+    {
+      "comuna": "Las Condes",
+      "temperatura_c": 11.9,
+      "humedad_pct": 81,
+      "viento_kmh": 1.8,
+      "precipitacion_mm": 0.0
+    },
+    {
+      "comuna": "Macul",
+      "temperatura_c": 12.1,
+      "humedad_pct": 81,
+      "viento_kmh": 1.8,
+      "precipitacion_mm": 0.0
+    },
+    {
+      "comuna": "Maipú",
+      "temperatura_c": 12.9,
+      "humedad_pct": 81,
+      "viento_kmh": 5.8,
+      "precipitacion_mm": 0.0
+    },
+    {
+      "comuna": "Peñalolén",
+      "temperatura_c": 11.9,
+      "humedad_pct": 81,
+      "viento_kmh": 1.8,
+      "precipitacion_mm": 0.0
+    },
+    {
+      "comuna": "Providencia",
+      "temperatura_c": 12.8,
+      "humedad_pct": 73,
+      "viento_kmh": 1.9,
+      "precipitacion_mm": 0.0
+    },
+    {
+      "comuna": "Puente Alto",
+      "temperatura_c": 11.5,
+      "humedad_pct": 79,
+      "viento_kmh": 0.2,
+      "precipitacion_mm": 0.0
+    },
+    {
+      "comuna": "Recoleta",
+      "temperatura_c": 12.8,
+      "humedad_pct": 73,
+      "viento_kmh": 1.9,
+      "precipitacion_mm": 0.0
+    },
+    {
+      "comuna": "San Miguel",
+      "temperatura_c": 12.9,
+      "humedad_pct": 81,
+      "viento_kmh": 1.8,
+      "precipitacion_mm": 0.0
+    },
+    {
+      "comuna": "Santiago Centro",
+      "temperatura_c": 12.8,
+      "humedad_pct": 73,
+      "viento_kmh": 1.9,
+      "precipitacion_mm": 0.0
+    },
+    {
+      "comuna": "Vitacura",
+      "temperatura_c": 12.7,
+      "humedad_pct": 68,
+      "viento_kmh": 1.2,
+      "precipitacion_mm": 0.0
+    },
+    {
+      "comuna": "Ñuñoa",
+      "temperatura_c": 12.1,
+      "humedad_pct": 81,
+      "viento_kmh": 1.8,
+      "precipitacion_mm": 0.0
+    }
+  ]
+}
