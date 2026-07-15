@@ -70,7 +70,13 @@ TARGET = "retrasado"
 
 
 def construir_preprocesador() -> ColumnTransformer:
-    """Escalado para numéricas + one-hot para categóricas."""
+    """
+    Escalado para numéricas + one-hot para categóricas.
+
+    Se construye uno NUEVO por modelo: un ColumnTransformer guarda estado al
+    entrenarse, y compartir la misma instancia entre pipelines distintos es
+    una fuente silenciosa de errores.
+    """
     return ColumnTransformer([
         ("num", StandardScaler(), NUMERICAS),
         ("cat", OneHotEncoder(handle_unknown="ignore"), CATEGORICAS),
@@ -113,7 +119,7 @@ def main() -> None:
 
     # ---------- Modelo 1: Regresión Logística (línea base) ----------
     print("Modelo 1/3 — Regresión Logística (línea base)")
-    pipe_log = Pipeline([("pre", pre),
+    pipe_log = Pipeline([("pre", construir_preprocesador()),
                          ("clf", LogisticRegression(max_iter=1000))])
     pipe_log.fit(X_train, y_train)
     resultados["regresion_logistica"], pred_log = evaluar(
@@ -124,7 +130,7 @@ def main() -> None:
     # ---------- Modelo 2: Árbol de Decisión + GridSearchCV ----------
     print(f"Modelo 2/3 — Árbol de Decisión (GridSearchCV, cv={CV_FOLDS})")
     grid_arbol = GridSearchCV(
-        Pipeline([("pre", pre), ("clf", DecisionTreeClassifier(
+        Pipeline([("pre", construir_preprocesador()),("clf", DecisionTreeClassifier(
             random_state=RANDOM_STATE))]),
         param_grid={
             "clf__max_depth": [4, 8, 12, None],
@@ -144,8 +150,7 @@ def main() -> None:
     # ---------- Modelo 3: Random Forest + GridSearchCV ----------
     print(f"Modelo 3/3 — Random Forest (GridSearchCV, cv={CV_FOLDS})")
     grid_rf = GridSearchCV(
-        Pipeline([("pre", pre), ("clf", RandomForestClassifier(
-            n_jobs=-1, random_state=RANDOM_STATE))]),
+        Pipeline([("pre", construir_preprocesador()), ("clf", RandomForestClassifier(n_jobs=-1, random_state=RANDOM_STATE))]),
         param_grid={
             "clf__n_estimators": [100, 200],
             "clf__max_depth": [10, 14, None],
