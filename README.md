@@ -152,3 +152,49 @@ Además, la comuna es la unidad de decisión del negocio: la flota se planifica 
 - La **comuna no influye** en el retraso: las 14 tienen tasas entre 0.36 y 0.40, diferencias atribuibles a ruido muestral.
 
 ---
+
+## Estructura del proyecto
+
+```
+├── analisis_delivery.ipynb    # INFORME: importa src/, no lo duplica
+├── data/
+│   ├── pedidos_delivery.csv   # Fuente 1 (crudo)
+│   ├── comunas.db             # Fuente 2 (SQLite)
+│   ├── clima_api.json         # Fuente 3 (snapshot de respaldo de la API)
+│   ├── pedidos_limpio.csv     # salida del ETL
+│   └── comunas_segmentadas.csv# salida del clustering
+├── src/
+│   ├── generar_dataset.py     # generador del dataset simulado
+│   ├── fuente_sql.py          # FUENTE 2: base SQLite + query
+│   ├── fuente_api.py          # FUENTE 3: API REST + fallback
+│   ├── etl.py                 # ETL: limpieza + integración + features
+│   ├── modelo.py              # supervisado: LogReg / Árbol / RF + GridSearchCV
+│   └── clustering.py          # no supervisado: K-Means + PCA
+├── tests/
+│   └── test_pipeline.py       # 12 tests (calidad, integración, anti-leakage)
+├── models/
+│   └── modelo_retrasos.joblib # Pipeline serializado (preproceso + modelo)
+├── reports/                   # métricas, reporte de calidad y figuras
+├── dashboard/app.py           # dashboard Dash + Plotly (3 pestañas)
+├── DICCIONARIO_DATOS.md
+└── requirements.txt
+```
+
+---
+
+## Dashboard
+
+`python dashboard/app.py` → <http://127.0.0.1:8050>
+
+1. **Análisis** — KPIs, filtros por comuna/clima/vehículo y 4 visualizaciones interactivas.
+2. **Segmentación** — resultado del K-Means: proyección PCA, método del codo, silhouette por K y perfil de cada segmento.
+3. **Simulador** — predicción en vivo: se ajustan las condiciones del pedido y el modelo devuelve la probabilidad de retraso. El contexto de la comuna (densidad, clima) se completa automáticamente desde las fuentes SQL y API.
+
+---
+
+## Limitaciones
+
+- El dataset de pedidos es **simulado**: las conclusiones validan la metodología, no describen el mercado real de delivery en Santiago.
+- Como la comuna se asigna al azar en la simulación, **no existe señal territorial que capturar**; con datos reales las fuentes externas podrían sí aportar.
+- La segmentación trabaja con 14 observaciones (todas las comunas de operación, no una muestra).
+- No se abordó el desbalance de clases (38/62) con técnicas específicas (SMOTE, ajuste de umbral): es el siguiente paso natural.
