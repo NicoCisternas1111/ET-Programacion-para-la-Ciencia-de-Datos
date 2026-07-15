@@ -142,3 +142,13 @@ Ambos segmentos tienen **la misma tasa de retraso**: la segmentación es **terri
 Además, la comuna es la unidad de decisión del negocio: la flota se planifica por territorio, no pedido a pedido.
 
 ---
+
+## Hallazgos principales
+
+- El **tráfico alto** y la **lluvia** son los factores que más aumentan la probabilidad de retraso.
+- La **distancia** en bicicleta penaliza mucho más que en moto o auto — es la palanca operativa de mayor impacto.
+- Las **horas punta** (13–14 h almuerzo, 20–21 h cena) concentran los retrasos.
+- Los repartidores con más **experiencia** reducen el riesgo de forma sostenida hasta los ~36 meses.
+- La **comuna no influye** en el retraso: las 14 tienen tasas entre 0.36 y 0.40, diferencias atribuibles a ruido muestral.
+
+---
